@@ -18,5 +18,5 @@ Welcome to my Git Projects repository! This is where I will be uploading various
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com//git_projects.git
+   git clone https://github.com/jambrose2/git_projects.git
 
