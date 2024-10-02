@@ -1,3 +1,4 @@
+# Need to have these all downloaded
 import cv2
 import torch
 import os
@@ -6,6 +7,7 @@ import time
 import osascript
 import matplotlib.pyplot as plt
 
+# Replace with path to beep alert desired
 def show_alert():
     osascript.osascript("set volume output volume 30")
     os.system(f'afplay "/Users/julianambrose/PycharmProjects/yolov5/124895__greencouch__beeps-15.wav"')
@@ -14,7 +16,7 @@ def show_alert():
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-# Load the YOLOv5 model with the local weights
+# Load the YOLOv5 model with the local weights, use your path
 model = torch.hub.load('ultralytics/yolov5', 'custom',
                        path='/Users/julianambrose/PycharmProjects/yolov5/yolov5m.pt')
 
@@ -31,7 +33,7 @@ last_detected_time = 0
 is_alerted = False
 start_time = None
 missed_frames = 0
-max_frames = 150
+max_frames = 150 # You need to change this to max time (sec) * FPS (30 FPS for Mac)
 total_time_on = 0
 time_on_current = 0
 
@@ -46,18 +48,9 @@ while cap.isOpened():
     detected = False
     results = model(frame)
 
-    # print(f"Detected Time: {detected_time}, Start Time: {start_time}")
 
     for *box, conf, cls in results.xyxy[0]:
         label = model.names[int(cls)]
-
-        #if label in monitoring_objects and conf > .3:
-         #   time_on_current = time.time()
-
-        #else:
-         #   total_time_on += time_on_current
-          #  time_on_current = 0
-
 
         if label in monitoring_objects and conf > confidence_threshold:
             detected = True
@@ -100,8 +93,8 @@ while cap.isOpened():
     # Convert the frame to RGB (for matplotlib)
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    # Display the frame with detections
-    cv2.imshow("Webcam", rgb_frame)
+    # Display the frame with detections (Comment this out to run smoother and without background window)
+    # cv2.imshow("Webcam", rgb_frame)
     plt.axis('off')  # Turn off axis
     plt.show(block=False)
     plt.pause(0.001)  # Pause to allow the display to update
