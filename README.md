@@ -29,16 +29,14 @@ This project implements a popup notification window that appears when you log in
 Today's Events: A list of events scheduled for the day, extracted from your calendar.
 Current Time: The time displayed in a clear format.
 Weather Information: Current weather conditions to help you plan your day.
-Reminders: A summary of important reminders or tasks due for the day.
-Missed Text Messages: A notification of any unread text messages to ensure you don't miss important communications.
-Technologies Used
+Languages:
 Python: The main programming language for developing the application.
-CustomTkinter: A library used for designing the GUI to enhance the appearance of the popup window.
+CustomTkinter: Library used for designing the GUI to enhance the appearance of the popup window.
 Features
 User-Friendly Interface: The popup is designed to be intuitive, providing users with quick access to important information.
 Automatic Launch: The popup appears automatically upon logging into your Mac, ensuring you start your day informed.
 
 # IMPORTANT
   - To run on startup with Mac, cronetab the script to run at whatever time you want the weather/events for
-  - You will also need to pmset a wakeup right before the script time run, and execute a sleeping script right after
+  - You will also need to pmset a wakeup right before the script time run, and execute a sleeping script  after
   - I included my scripts in the repo
