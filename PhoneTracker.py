@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 # Replace with path to beep alert desired
 def show_alert():
     osascript.osascript("set volume output volume 30")
-    os.system(f'afplay "/Users/julianambrose/PycharmProjects/yolov5/124895__greencouch__beeps-15.wav"')
+    # You will need to finish the path to the sound you want to play
+    # os.system(f'afplay "os.path.expanduser('~')"')
 
 # Suppress FutureWarnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -18,7 +19,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # Load the YOLOv5 model with the local weights, use your path
 model = torch.hub.load('ultralytics/yolov5', 'custom',
-                       path='/Users/julianambrose/PycharmProjects/yolov5/yolov5m.pt')
+                       path='os.path.expanduser('~')')
 
 
 # Get from webcam
@@ -27,13 +28,13 @@ cap = cv2.VideoCapture(0)
 monitoring_objects = ['cell phone', 'remote']
 confidence_threshold = 0.3
 monitor_duration = 60  # time in seconds
-leeway_duration = 5
+leeway_duration = 5 # How much extra 
 detected_time = 0  # Time in seconds for which the object is detected
 last_detected_time = 0
 is_alerted = False
 start_time = None
 missed_frames = 0
-max_frames = 150 # You need to change this to max time (sec) * FPS (30 FPS for Mac)
+max_frames = 150 # You need to change this to max time (missed) (sec) * FPS (30 FPS for Mac) 
 total_time_on = 0
 time_on_current = 0
 
@@ -106,4 +107,5 @@ while cap.isOpened():
 cap.release()  # Release the capture when done
 cv2.destroyAllWindows()  # Close any OpenCV windows
 
+# Optional print to tell you total time recorded
 print(total_time_on)
